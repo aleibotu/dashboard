@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Page() {
     const items = ['空气', '土壤', '水质']
     return (
-        <div style={{display: 'flex', gap: 10}}>
+        <div style={{display: 'flex', gap: 10, padding: 10}}>
             {items.map((d, i) => (
                 <Link
                     key={d}

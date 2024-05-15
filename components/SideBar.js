@@ -1,5 +1,5 @@
 'use client'
-import {Menu, Layout, Button, theme} from "antd";
+import {Menu, Layout, Button, theme, Avatar} from "antd";
 import {sidebarRoutes} from "@/components/routes";
 import {useState} from "react";
 import {
@@ -18,7 +18,6 @@ export default function SideBar({children}) {
     return (
         <Layout>
             <Sider trigger={null} collapsible collapsed={collapsed}>
-                <div className="demo-logo-vertical"/>
                 <Menu
                     theme="dark"
                     mode="inline"
@@ -36,16 +35,21 @@ export default function SideBar({children}) {
                         background: colorBgContainer,
                     }}
                 >
-                    <Button
-                        type="text"
-                        icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
-                        onClick={() => setCollapsed(!collapsed)}
-                        style={{
-                            fontSize: '16px',
-                            width: 64,
-                            height: 64,
-                        }}
-                    />
+                    <div style={{display: "flex", alignItems: "center"}}>
+                        <Button
+                            type="text"
+                            icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+                            onClick={() => setCollapsed(!collapsed)}
+                            style={{
+                                fontSize: '16px',
+                                width: 64,
+                                height: 64,
+                            }}
+                        />
+                        <div style={{flex: 1, display: "flex", alignItems: 'center', justifyContent: 'flex-end', padding: '0 18px'}}>
+                            <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />
+                        </div>
+                    </div>
                 </Header>
                 {children}
             </Layout>

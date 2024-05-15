@@ -1,6 +1,6 @@
 export default function Page() {
     return (
-        <div>
+        <div style={{padding: 10}}>
             home
         </div>
     );

@@ -23,8 +23,6 @@ export default function RealTime() {
     return (
         <>
             <RealTimeForm/>
-            <br/>
-            <br/>
             <CustomChart topic="sensor/001" msg={msg}/>
         </>
     )

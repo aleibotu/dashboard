@@ -8,8 +8,6 @@ export default function History() {
     return (
         <>
             <HistoryForm/>
-            <br/>
-            <br/>
             <HistoryChart/>
         </>
     )

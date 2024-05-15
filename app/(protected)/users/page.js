@@ -80,6 +80,7 @@ export default function Page() {
     };
     return (
         <div>
+            <div style={{display: "flex", alignItems: 'center', justifyContent: "space-between", padding: '16px 8px'}}>
             <Space>
                 <Select
                     showSearch
@@ -105,8 +106,9 @@ export default function Page() {
                 />
                 <Button type="primary">增加</Button>
             </Space>
-            <br/>
-            <br/>
+
+                <Button type="primary">增加</Button>
+            </div>
             <Table columns={columns} dataSource={data} />
         </div>
     );

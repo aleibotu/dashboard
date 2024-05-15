@@ -22,7 +22,7 @@ const columns = [
         title: '状态',
         key: 'tags',
         dataIndex: 'tags',
-        render: (_, { tags }) => (
+        render: (_, {tags}) => (
             <>
                 {tags.map((tag) => {
                     let color = tag.length > 5 ? 'geekblue' : 'green';
@@ -82,47 +82,49 @@ export default function Page() {
     };
     return (
         <div>
-            <Space>
-                <Select
-                    showSearch
-                    placeholder="Select a person"
-                    optionFilterProp="children"
-                    style={{
-                        width: 240,
-                    }}
-                    options={[
-                        {
-                            value: 'jack',
-                            label: 'Jack',
-                        },
-                        {
-                            value: 'lucy',
-                            label: 'Lucy',
-                        },
-                        {
-                            value: 'tom',
-                            label: 'Tom',
-                        },
-                    ]}
-                />
-                <Select
-                    defaultValue="1"
-                    style={{
-                        width: 240,
-                    }}
-                    onChange={handleChange}
-                    options={[
-                        {
-                            value: '1',
-                            label: '001',
-                        }
-                    ]}
-                />
+            <div style={{display: "flex", alignItems: 'center', justifyContent: "space-between", padding: '16px 8px'}}>
+                <Space>
+                    <Select
+                        showSearch
+                        placeholder="Select a person"
+                        optionFilterProp="children"
+                        style={{
+                            width: 240,
+                        }}
+                        options={[
+                            {
+                                value: 'jack',
+                                label: 'Jack',
+                            },
+                            {
+                                value: 'lucy',
+                                label: 'Lucy',
+                            },
+                            {
+                                value: 'tom',
+                                label: 'Tom',
+                            },
+                        ]}
+                    />
+                    <Select
+                        defaultValue="1"
+                        style={{
+                            width: 240,
+                        }}
+                        onChange={handleChange}
+                        options={[
+                            {
+                                value: '1',
+                                label: '001',
+                            }
+                        ]}
+                    />
+                </Space>
+
                 <Button type="primary">增加</Button>
-            </Space>
-            <br/>
-            <br/>
-            <Table columns={columns} dataSource={data} />
+            </div>
+
+            <Table columns={columns} dataSource={data}/>
         </div>
     );
 }

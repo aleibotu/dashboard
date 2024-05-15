@@ -1,12 +1,17 @@
 import Link from "next/link";
-import {UserOutlined} from "@ant-design/icons";
+import {
+    AreaChartOutlined, CompassOutlined,
+    DesktopOutlined,
+    ExperimentOutlined,
+    HomeOutlined,
+    LineChartOutlined,
+    UserOutlined
+} from "@ant-design/icons";
 
 function TopLabel() {
     return (
-        <div style={{display: "flex", alignItems: 'center', justifyContent: 'center'}}>
-            <Link href="/">
-                5G
-            </Link>
+        <div style={{display: "flex", alignItems: 'center', justifyContent: 'center', padding: '10px 0'}}>
+            智慧环境
         </div>
     )
 }
@@ -19,12 +24,12 @@ export const sidebarRoutes = [
         children: [
             {
                 key: '1',
-                icon: <UserOutlined/>,
+                icon: <HomeOutlined />,
                 label: <Link href="/home">首页</Link>,
             },
             {
                 key: '2',
-                icon: <UserOutlined/>,
+                icon: <ExperimentOutlined />,
                 label: <Link href="/devices">设备</Link>,
             },
             {
@@ -34,22 +39,22 @@ export const sidebarRoutes = [
             },
             {
                 key: '5',
-                icon: <UserOutlined/>,
+                icon: <AreaChartOutlined />,
                 label: <Link href="/realtime">实时数据</Link>,
             },
             {
                 key: '6',
-                icon: <UserOutlined/>,
+                icon: <LineChartOutlined />,
                 label: <Link href="/history">历史数据</Link>,
             },
             {
                 key: '7',
-                icon: <UserOutlined/>,
+                icon: <CompassOutlined />,
                 label: <Link href="/prediction">AI 算法预测</Link>,
             },
             {
                 key: '8',
-                icon: <UserOutlined/>,
+                icon: <DesktopOutlined />,
                 label: <Link href="/big">大屏</Link>,
             },
         ],
