@@ -3,13 +3,13 @@ import {Button, Select, Space, Table, Tag} from "antd";
 
 const columns = [
     {
-        title: '用户名',
+        title: '编号',
         dataIndex: 'name',
         key: 'name',
         render: (text) => <a>{text}</a>,
     },
     {
-        title: '时长',
+        title: '数据量',
         dataIndex: 'age',
         key: 'age',
     },
@@ -19,7 +19,7 @@ const columns = [
         key: 'address',
     },
     {
-        title: '权限',
+        title: '状态',
         key: 'tags',
         dataIndex: 'tags',
         render: (_, { tags }) => (
@@ -44,6 +44,8 @@ const columns = [
         render: (_, record) => (
             <Space size="middle">
                 {/*<a>Invite {record.name}</a>*/}
+                <a>实时</a>
+                <a>历史</a>
                 <a>编辑</a>
                 <a>删除</a>
             </Space>
@@ -53,21 +55,21 @@ const columns = [
 const data = [
     {
         key: '1',
-        name: 'user1',
+        name: 'topic/001',
         age: 32,
         address: 'New York No. 1 Lake Park',
         tags: ['nice', 'developer'],
     },
     {
         key: '2',
-        name: 'user2',
+        name: 'topic/002',
         age: 42,
         address: 'London No. 1 Lake Park',
         tags: ['loser'],
     },
     {
         key: '3',
-        name: 'user3',
+        name: 'topic/003',
         age: 32,
         address: 'Sydney No. 1 Lake Park',
         tags: ['cool', 'teacher'],
@@ -101,6 +103,19 @@ export default function Page() {
                             value: 'tom',
                             label: 'Tom',
                         },
+                    ]}
+                />
+                <Select
+                    defaultValue="1"
+                    style={{
+                        width: 240,
+                    }}
+                    onChange={handleChange}
+                    options={[
+                        {
+                            value: '1',
+                            label: '001',
+                        }
                     ]}
                 />
                 <Button type="primary">增加</Button>

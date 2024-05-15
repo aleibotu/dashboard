@@ -1,8 +1,8 @@
+import History from "@/app/(protected)/history/History";
 export default function Page() {
     return (
         <div>
-            history
-            CRUD
+            <History />
         </div>
     );
 }

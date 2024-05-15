@@ -1,8 +1,29 @@
+import {Avatar, Card} from "antd";
+import Meta from "antd/es/card/Meta";
+import Link from "next/link";
+
 export default function Page() {
+    const items = ['空气', '土壤', '水质']
     return (
-        <div>
-            devices
-            CRUD
+        <div style={{display: 'flex', gap: 10}}>
+            {items.map((d, i) => (
+                <Link
+                    key={d}
+                    href="/devices/air"
+                >
+                    <Card
+                        style={{
+                            width: 300,
+                        }}
+                    >
+                        <Meta
+                            avatar={<Avatar src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${i}`}/>}
+                            title={d}
+                            description={`${d} 传感器 是一组 ....`}
+                        />
+                    </Card>
+                </Link>
+            ))}
         </div>
     );
 }
