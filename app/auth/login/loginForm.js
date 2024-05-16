@@ -47,8 +47,11 @@ export const LoginForm = () => {
                     </Form.Item>
 
                     <Form.Item>
+                        {/*<Button type="primary" htmlType="submit" className="login-form-button">*/}
+                        {/*    Log in*/}
+                        {/*</Button>*/}
                         <Button type="primary" htmlType="submit" className="login-form-button">
-                            Log in
+                            register
                         </Button>
                     </Form.Item>
                 </Form>
