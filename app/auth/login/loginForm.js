@@ -1,12 +1,11 @@
 'use client'
 import {Button, Card, Form, Input} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
-import {login} from "@/actions/login";
+import {register} from "@/actions/register";
 
 export const LoginForm = () => {
     const onFinish = (values) => {
-        console.log('Received values of form: ', values);
-        login(values)
+        register(values)
     };
     return (
         <div style={{height: '100vh', display: 'flex', alignItems: "center", justifyContent: 'center'}}>
