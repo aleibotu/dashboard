@@ -1,4 +1,3 @@
-
 import {Filter} from "@/app/(protected)/users/Filter";
 import {UserTable} from "@/app/(protected)/users/UserTable";
 import {getUsers} from "@/data/user";
@@ -8,7 +7,7 @@ export default async function Page() {
     return (
         <div>
             <Filter />
-            <UserTable users={users}/>
+            <UserTable users={users} />
         </div>
     );
 }
