@@ -2,7 +2,7 @@
   "name": "dashboard",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
+    "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -11,15 +11,21 @@
   "dependencies": {
     "@ant-design/icons": "^5.3.7",
     "@ant-design/nextjs-registry": "^1.0.0",
+    "@auth/prisma-adapter": "^2.1.0",
+    "@prisma/client": "^5.14.0",
     "antd": "^5.17.2",
+    "bcryptjs": "^2.4.3",
     "chart.js": "^3.3.2",
     "chartjs-adapter-luxon": "^1.0.0",
     "chartjs-plugin-streaming": "^2.0.0",
     "luxon": "^1.27.0",
     "next": "14.2.3",
+    "next-auth": "^5.0.0-beta.18",
+    "prisma": "^5.14.0",
     "react": "^18",
     "react-chartjs-2": "^4.2.0",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "eslint": "^8",

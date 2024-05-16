@@ -6,6 +6,7 @@ import {
     MenuFoldOutlined,
     MenuUnfoldOutlined
 } from "@ant-design/icons";
+import {signOut} from "next-auth/react";
 
 const {Header, Sider} = Layout;
 export default function SideBar({children}) {
@@ -48,6 +49,7 @@ export default function SideBar({children}) {
                         />
                         <div style={{flex: 1, display: "flex", alignItems: 'center', justifyContent: 'flex-end', padding: '0 18px'}}>
                             <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />
+                            <Button onClick={() => signOut()}>log out</Button>
                         </div>
                     </div>
                 </Header>

@@ -1,6 +1,7 @@
 import {Avatar, Card} from "antd";
 import Meta from "antd/es/card/Meta";
 import Link from "next/link";
+import {EllipsisOutlined} from "@ant-design/icons";
 
 export default function Page() {
     const items = ['空气', '土壤', '水质']
@@ -15,6 +16,10 @@ export default function Page() {
                         style={{
                             width: 300,
                         }}
+                        actions={[
+                            (<>预警设置</>),
+                            <EllipsisOutlined key="ellipsis"/>,
+                        ]}
                     >
                         <Meta
                             avatar={<Avatar src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${i}`}/>}
