@@ -1,11 +1,11 @@
 'use client'
 import {Button, Card, Form, Input} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
-import {register} from "@/actions/register";
+import {login} from "@/actions/login";
 
 export const LoginForm = () => {
     const onFinish = (values) => {
-        register(values)
+        login(values)
     };
     return (
         <div style={{height: '100vh', display: 'flex', alignItems: "center", justifyContent: 'center'}}>
@@ -46,12 +46,12 @@ export const LoginForm = () => {
                     </Form.Item>
 
                     <Form.Item>
-                        {/*<Button type="primary" htmlType="submit" className="login-form-button">*/}
-                        {/*    Log in*/}
-                        {/*</Button>*/}
                         <Button type="primary" htmlType="submit" className="login-form-button">
-                            register
+                            Log in
                         </Button>
+                        {/*<Button type="primary" htmlType="submit" className="login-form-button">*/}
+                        {/*    register*/}
+                        {/*</Button>*/}
                     </Form.Item>
                 </Form>
             </Card>
