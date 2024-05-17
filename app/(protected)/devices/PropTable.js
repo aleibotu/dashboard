@@ -1,5 +1,5 @@
 'use client'
-import {Button} from "antd";
+import {Button, Form, Input, Space, Table} from "antd";
 
 export const PropTable = () => {
     const columns = [
@@ -16,7 +16,39 @@ export const PropTable = () => {
         {
             title: '报警范围',
             dataIndex: 'name',
-            key: '3'
+            key: '3',
+            render: (_) => {
+                return (
+                    <>
+                        <Space.Compact>
+                            <Form layout="inline">
+                                <Form.Item style={{margin: 0}}>
+                                    <Space.Compact>
+                                        <Input
+                                            style={{
+                                                width: '80%',
+                                            }}
+                                            defaultValue="26888888"
+                                        />
+                                        <Input
+                                            style={{
+                                                width: '10%',
+                                            }}
+                                            defaultValue="至"
+                                        />
+                                        <Input
+                                            style={{
+                                                width: '80%',
+                                            }}
+                                            defaultValue="26888888"
+                                        />
+                                    </Space.Compact>
+                                </Form.Item>
+                            </Form>
+                        </Space.Compact>
+                    </>
+                )
+            }
         },
     ];
 
@@ -31,7 +63,7 @@ export const PropTable = () => {
 
     return (
         <>
-            {/*<Table columns={columns} dataSource={data} pagination={false}/>*/}
+            <Table rowKey={d => d.name} columns={columns} dataSource={data} pagination={false}/>
             <div style={{display: 'flex', justifyContent: 'flex-end', gap: 10, paddingTop: 10}}>
                 <Button>取消</Button>
                 <Button type="primary">更新</Button>

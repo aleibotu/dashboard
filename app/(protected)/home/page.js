@@ -1,8 +1,11 @@
-export default function Page() {
-    console.log(process.env.MAPBOX_ACCESS_TOKEN)
+import {HomeMap} from "@/app/(protected)/home/HomeMap";
+import {getDevices} from "@/actions/device";
+
+export default async function Page() {
+    const devices = await getDevices()
     return (
         <div style={{width: '100%', height: '100%', position: 'relative'}}>
-            {/*<MapPickUp token={process.env.MAPBOX_ACCESS_TOKEN} />*/}
+            <HomeMap token={process.env.MAPBOX_ACCESS_TOKEN} devices={devices} />
         </div>
     );
 }
