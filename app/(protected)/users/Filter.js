@@ -104,9 +104,10 @@ export const Filter = () => {
     const [open, setOpen] = useState(false);
     const onCreate = (values) => {
         console.log('Received values of form: ', values);
-        setFormValues(values);
-        setOpen(false);
-        register(values)
+        register(values).then(() => {
+            setFormValues(values);
+            setOpen(false);
+        })
     };
     return (
         <div style={{display: "flex", alignItems: 'center', justifyContent: "space-between", padding: '16px 8px'}}>

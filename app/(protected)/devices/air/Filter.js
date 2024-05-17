@@ -1,10 +1,12 @@
 'use client'
 import {Button, Form, Input, Modal, Select, Space} from "antd";
 import {LockOutlined} from "@ant-design/icons";
-import {useEffect, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
+import {MapPickUp} from "@/app/(protected)/devices/air/MapPickUp";
+import {addDevice} from "@/actions/device";
 
 // const CollectionCreateForm = ({initialValues, onFormInstanceReady}) => {
-const CollectionCreateForm = ({onFormInstanceReady}) => {
+const CollectionCreateForm = ({onFormInstanceReady, token}) => {
     const [form] = Form.useForm();
     useEffect(() => {
         onFormInstanceReady(form);
@@ -16,6 +18,21 @@ const CollectionCreateForm = ({onFormInstanceReady}) => {
                 className="login-form"
                 form={form}
             >
+                <Form.Item
+                    name="topic"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your Password!',
+                        },
+                    ]}
+                >
+                    <Input
+                        prefix={<LockOutlined className="site-form-item-icon"/>}
+                        type="text"
+                        placeholder="topic"
+                    />
+                </Form.Item>
                 <Form.Item
                     name="description"
                     rules={[
@@ -35,18 +52,24 @@ const CollectionCreateForm = ({onFormInstanceReady}) => {
                         placeholder="备注"
                     />
                 </Form.Item>
+                <Form.Item>
+                    <div style={{width: '100%', height: 500, position: 'relative'}}>
+                        <MapPickUp token={token}/>
+                    </div>
+                </Form.Item>
             </Form>
         </>
     );
 };
-const CollectionCreateFormModal = ({open, onCreate, onCancel, initialValues}) => {
+
+const CollectionCreateFormModal = ({open, onCreate, onCancel, initialValues, token}) => {
     const [formInstance, setFormInstance] = useState();
     return (
         <Modal
             open={open}
-            title="Create a new collection"
-            okText="Create"
-            cancelText="Cancel"
+            title="添加设备"
+            okText="添加"
+            cancelText="取消"
             okButtonProps={{
                 autoFocus: true,
             }}
@@ -61,9 +84,10 @@ const CollectionCreateFormModal = ({open, onCreate, onCancel, initialValues}) =>
                     console.log('Failed:', error);
                 }
             }}
-            width={1000}
+            width={1200}
         >
             <CollectionCreateForm
+                token={token}
                 initialValues={initialValues}
                 onFormInstanceReady={(instance) => {
                     setFormInstance(instance);
@@ -73,24 +97,26 @@ const CollectionCreateFormModal = ({open, onCreate, onCancel, initialValues}) =>
     );
 };
 
-export const Filter = () => {
+const FilterForm = ({token}) => {
     // const [formValues, setFormValues] = useState();
     const [, setFormValues] = useState();
     const [open, setOpen] = useState(false);
+    const [, gps, ,userId] = useGps();
     const onCreate = (values) => {
-        console.log('Received values of form: ', values);
-        setFormValues(values);
-        setOpen(false);
+        // 在这里拿到 经纬度.
+        console.log('Received values of form: ', values, gps);
+        addDevice({...values, gps, userId}).then(() => {
+            setFormValues(values);
+            setOpen(false);
+        })
     };
-    const handleChange = (value) => {
-        console.log(`selected ${value}`);
-    };
+
     return (
         <div style={{display: "flex", alignItems: 'center', justifyContent: "space-between", padding: '16px 8px'}}>
             <Space>
                 <Select
                     showSearch
-                    placeholder="Select a person"
+                    placeholder="选择一个topic"
                     optionFilterProp="children"
                     style={{
                         width: 240,
@@ -98,35 +124,23 @@ export const Filter = () => {
                     options={[
                         {
                             value: 'jack',
-                            label: 'Jack',
+                            label: 'sensor/001',
                         },
                         {
                             value: 'lucy',
-                            label: 'Lucy',
+                            label: 'sensor/002',
                         },
                         {
                             value: 'tom',
-                            label: 'Tom',
+                            label: 'sensor/003',
                         },
-                    ]}
-                />
-                <Select
-                    defaultValue="1"
-                    style={{
-                        width: 240,
-                    }}
-                    onChange={handleChange}
-                    options={[
-                        {
-                            value: '1',
-                            label: '001',
-                        }
                     ]}
                 />
             </Space>
 
             <Button type="primary" onClick={() => setOpen(true)}>增加</Button>
             <CollectionCreateFormModal
+                token={token}
                 open={open}
                 onCreate={onCreate}
                 onCancel={() => setOpen(false)}
@@ -136,4 +150,21 @@ export const Filter = () => {
             />
         </div>
     )
+}
+
+
+const GpsContext = createContext([]);
+
+export const Filter = ({token, userId}) => {
+    const [gps, setGps] = useState([0, 0]);
+    return (
+        <GpsContext.Provider value={[token, gps, setGps, userId]}>
+            <FilterForm token={token}/>
+        </GpsContext.Provider>
+    )
+}
+
+export const useGps = () => {
+    const value = useContext(GpsContext)
+    return [...value]
 }
