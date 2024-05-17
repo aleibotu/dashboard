@@ -1,11 +1,14 @@
 'use client'
-import {Button, Card, Form, Input} from "antd";
+import {Button, Card, Form, Input, Spin} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
 import {login} from "@/actions/login";
+import {useState} from "react";
 
 export const LoginForm = () => {
+    const [pending, setPending] = useState(false);
     const onFinish = (values) => {
-        login(values)
+        setPending(true);
+        login(values).then(() => setPending(false))
     };
     return (
         <div style={{height: '100vh', display: 'flex', alignItems: "center", justifyContent: 'center'}}>
@@ -46,12 +49,11 @@ export const LoginForm = () => {
                     </Form.Item>
 
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" className="login-form-button">
-                            Log in
-                        </Button>
-                        {/*<Button type="primary" htmlType="submit" className="login-form-button">*/}
-                        {/*    register*/}
-                        {/*</Button>*/}
+                        <Spin spinning={pending}>
+                            <Button type="primary" htmlType="submit" className="login-form-button">
+                                Log in
+                            </Button>
+                        </Spin>
                     </Form.Item>
                 </Form>
             </Card>

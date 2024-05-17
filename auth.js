@@ -8,7 +8,6 @@ export const {
     auth,
     handlers: {GET, POST},
     signIn,
-    signOut
 } = NextAuth({
     callbacks: {
         async signIn({user}) {

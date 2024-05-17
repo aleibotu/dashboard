@@ -10,6 +10,7 @@ import {signOut} from "next-auth/react";
 
 const {Header, Sider} = Layout;
 export default function SideBar({children}) {
+    const [pending, setPending] = useState(false);
     const [collapsed, setCollapsed] = useState(false);
 
     const {
@@ -47,9 +48,20 @@ export default function SideBar({children}) {
                                 height: 64,
                             }}
                         />
-                        <div style={{flex: 1, display: "flex", alignItems: 'center', justifyContent: 'flex-end', padding: '0 18px'}}>
-                            <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />
-                            <Button onClick={() => signOut()}>log out</Button>
+                        <div style={{
+                            flex: 1,
+                            display: "flex",
+                            alignItems: 'center',
+                            justifyContent: 'flex-end',
+                            padding: '0 18px'
+                        }}>
+                            <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8"/>
+                            <Button loading={pending} onClick={() => {
+                                setPending(true)
+                                signOut().then(() => setPending(false))
+                            }}>
+                                log out
+                            </Button>
                         </div>
                     </div>
                 </Header>
