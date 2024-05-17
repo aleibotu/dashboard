@@ -1,7 +1,6 @@
 'use client'
 import {Button, Form, Input, Modal, Select, Space} from "antd";
-import {LockOutlined, UserOutlined} from "@ant-design/icons";
-import {register} from "@/actions/register";
+import {LockOutlined} from "@ant-design/icons";
 import {useEffect, useState} from "react";
 
 // const CollectionCreateForm = ({initialValues, onFormInstanceReady}) => {
@@ -11,58 +10,33 @@ const CollectionCreateForm = ({onFormInstanceReady}) => {
         onFormInstanceReady(form);
     }, []);
     return (
-        <Form
-            name="normal_login"
-            className="login-form"
-            form={form}
-        >
-            <Form.Item
-                name="username"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your Username!',
-                    },
-                ]}
+        <>
+            <Form
+                name="normal_login"
+                className="login-form"
+                form={form}
             >
-                <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Username"/>
-            </Form.Item>
-            <Form.Item
-                name="password"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your Password!',
-                    },
-                ]}
-            >
-                <Input
-                    prefix={<LockOutlined className="site-form-item-icon"/>}
-                    type="password"
-                    placeholder="Password"
-                />
-            </Form.Item>
-
-            <Form.Item
-                name="description"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your Password!',
-                    },
-                ]}
-            >
-                <Input.TextArea
-                    style={{
-                        height: 120,
-                        resize: 'none',
-                    }}
-                    prefix={<LockOutlined className="site-form-item-icon"/>}
-                    type="text"
-                    placeholder="备注"
-                />
-            </Form.Item>
-        </Form>
+                <Form.Item
+                    name="description"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your Password!',
+                        },
+                    ]}
+                >
+                    <Input.TextArea
+                        style={{
+                            height: 120,
+                            resize: 'none',
+                        }}
+                        prefix={<LockOutlined className="site-form-item-icon"/>}
+                        type="text"
+                        placeholder="备注"
+                    />
+                </Form.Item>
+            </Form>
+        </>
     );
 };
 const CollectionCreateFormModal = ({open, onCreate, onCancel, initialValues}) => {
@@ -87,6 +61,7 @@ const CollectionCreateFormModal = ({open, onCreate, onCancel, initialValues}) =>
                     console.log('Failed:', error);
                 }
             }}
+            width={1000}
         >
             <CollectionCreateForm
                 initialValues={initialValues}
@@ -106,7 +81,9 @@ export const Filter = () => {
         console.log('Received values of form: ', values);
         setFormValues(values);
         setOpen(false);
-        register(values)
+    };
+    const handleChange = (value) => {
+        console.log(`selected ${value}`);
     };
     return (
         <div style={{display: "flex", alignItems: 'center', justifyContent: "space-between", padding: '16px 8px'}}>
@@ -131,6 +108,19 @@ export const Filter = () => {
                             value: 'tom',
                             label: 'Tom',
                         },
+                    ]}
+                />
+                <Select
+                    defaultValue="1"
+                    style={{
+                        width: 240,
+                    }}
+                    onChange={handleChange}
+                    options={[
+                        {
+                            value: '1',
+                            label: '001',
+                        }
                     ]}
                 />
             </Space>

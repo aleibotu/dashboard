@@ -1,5 +1,6 @@
 'use client'
-import {Button, Select, Space, Table, Tag} from "antd";
+import {Space, Table, Tag} from "antd";
+import {Filter} from "@/app/(protected)/devices/air/Filter";
 
 const columns = [
     {
@@ -41,7 +42,8 @@ const columns = [
     {
         title: '操作',
         key: 'action',
-        render: (_, record) => (
+        // render: (_, record) => (
+        render: (_) => (
             <Space size="middle">
                 {/*<a>Invite {record.name}</a>*/}
                 <a>实时</a>
@@ -77,53 +79,10 @@ const data = [
 ];
 
 export default function Page() {
-    const handleChange = (value) => {
-        console.log(`selected ${value}`);
-    };
+
     return (
         <div>
-            <div style={{display: "flex", alignItems: 'center', justifyContent: "space-between", padding: '16px 8px'}}>
-                <Space>
-                    <Select
-                        showSearch
-                        placeholder="Select a person"
-                        optionFilterProp="children"
-                        style={{
-                            width: 240,
-                        }}
-                        options={[
-                            {
-                                value: 'jack',
-                                label: 'Jack',
-                            },
-                            {
-                                value: 'lucy',
-                                label: 'Lucy',
-                            },
-                            {
-                                value: 'tom',
-                                label: 'Tom',
-                            },
-                        ]}
-                    />
-                    <Select
-                        defaultValue="1"
-                        style={{
-                            width: 240,
-                        }}
-                        onChange={handleChange}
-                        options={[
-                            {
-                                value: '1',
-                                label: '001',
-                            }
-                        ]}
-                    />
-                </Space>
-
-                <Button type="primary">增加</Button>
-            </div>
-
+            <Filter/>
             <Table columns={columns} dataSource={data}/>
         </div>
     );
