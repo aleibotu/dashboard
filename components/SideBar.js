@@ -1,5 +1,5 @@
 'use client'
-import {Menu, Layout, Button, theme, Avatar} from "antd";
+import {Menu, Layout, Button, theme, Avatar, Dropdown, Spin} from "antd";
 import {sidebarRoutes} from "@/components/routes";
 import {useState} from "react";
 import {
@@ -9,13 +9,27 @@ import {
 import {signOut} from "next-auth/react";
 
 const {Header, Sider} = Layout;
-export default function SideBar({children}) {
+export default function SideBar({session, children}) {
     const [pending, setPending] = useState(false);
     const [collapsed, setCollapsed] = useState(false);
 
     const {
         token: {colorBgContainer},
     } = theme.useToken();
+
+    const items = [
+        {
+            key: '2',
+            label: (
+                <a onClick={() => {
+                    setPending(true)
+                    signOut().then(() => setPending(false))
+                }}>
+                    log out
+                </a>
+            ),
+        },
+    ];
 
     return (
         <Layout>
@@ -55,13 +69,10 @@ export default function SideBar({children}) {
                             justifyContent: 'flex-end',
                             padding: '0 18px'
                         }}>
-                            <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8"/>
-                            <Button loading={pending} onClick={() => {
-                                setPending(true)
-                                signOut().then(() => setPending(false))
-                            }}>
-                                log out
-                            </Button>
+                            <Spin spinning={pending}><h3>{session.user.name}</h3></Spin>
+                            <Dropdown menu={{items}} placement="bottomRight" arrow>
+                                <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8"/>
+                            </Dropdown>
                         </div>
                     </div>
                 </Header>

@@ -5,8 +5,8 @@ import {MapboxOverlay} from "@deck.gl/mapbox";
 import {Typography} from "antd";
 
 import "mapbox-gl/dist/mapbox-gl.css"
-import Pin from "@/app/(protected)/devices/air/pin";
-import {useGps} from "@/app/(protected)/devices/air/Filter";
+import Pin from './pin'
+import {useGps} from "@/app/(protected)/devices/[device]/Filter";
 
 function DeckGLOverlay(props) {
     const overlay = useControl(() => new MapboxOverlay(props));

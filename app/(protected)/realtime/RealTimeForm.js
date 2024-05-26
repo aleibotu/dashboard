@@ -1,10 +1,7 @@
 'use client'
-import {Select, Space} from "antd";
+import {Button, Select, Space} from "antd";
 
-export const RealTimeForm = () => {
-    const handleChange = (value) => {
-        console.log(`selected ${value}`);
-    };
+export const RealTimeForm = ({handleType, handleNumber}) => {
     return (
         <>
             <div style={{display: "flex", alignItems: 'center', justifyContent: "space-between", padding: '16px 8px'}}>
@@ -14,7 +11,7 @@ export const RealTimeForm = () => {
                         style={{
                             width: 240,
                         }}
-                        onChange={handleChange}
+                        onChange={handleType}
                         options={[
                             {
                                 value: '1',
@@ -31,7 +28,6 @@ export const RealTimeForm = () => {
                             {
                                 value: '4',
                                 label: '气象车',
-                                disabled: true,
                             },
                         ]}
                     />
@@ -40,7 +36,7 @@ export const RealTimeForm = () => {
                         style={{
                             width: 240,
                         }}
-                        onChange={handleChange}
+                        onChange={handleNumber}
                         options={[
                             {
                                 value: '1',
@@ -48,6 +44,7 @@ export const RealTimeForm = () => {
                             }
                         ]}
                     />
+                    <Button>查询</Button>
                 </Space>
             </div>
         </>

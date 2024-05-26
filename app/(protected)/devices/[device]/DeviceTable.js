@@ -1,6 +1,6 @@
 'use client'
 import {Space, Table} from "antd";
-import Pin from "@/app/(protected)/devices/air/pin";
+import Pin from './pin'
 import {Typography} from "antd";
 import {delDevice} from "@/actions/device";
 

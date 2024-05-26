@@ -3,7 +3,7 @@ import StaticMap, {useControl, Marker, Popup} from "react-map-gl";
 import {MapboxOverlay} from "@deck.gl/mapbox";
 import {useRef, useState} from "react";
 import "mapbox-gl/dist/mapbox-gl.css"
-import Pin from "@/app/(protected)/devices/air/pin";
+import Pin from '@/app/(protected)/devices/[device]/pin'
 function DeckGLOverlay(props) {
     const overlay = useControl(() => new MapboxOverlay(props));
     overlay.setProps(props);

@@ -29,9 +29,31 @@ export const delDevice = async (topic) => {
     }
 }
 
-export const getDevices = async () => {
+const TypeMapping = {
+    air: 1,
+    sand: 2,
+    water: 3,
+    move: 4
+}
+/**
+ *
+ * @param type 0: '全部' 1: '空气', 2 '土壤', 3: '水质', 8: '移动气象站'
+ * @returns {Promise<null|*>}
+ */
+export const getDevices = async ({type}) => {
     try {
-        return await db.device.findMany()
+        console.log('this is type', type);
+        if (type === 0) {
+            return await db.device.findMany()
+        } else {
+            return await db.device.findMany({
+                where: {
+                    topic: {
+                        startsWith: `sensor/00${TypeMapping[type]}`
+                    }
+                }
+            })
+        }
     } catch (e) {
         return null
     }

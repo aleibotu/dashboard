@@ -2,7 +2,7 @@
 import {Button, Form, Input, Modal, Select, Space} from "antd";
 import {LockOutlined} from "@ant-design/icons";
 import {createContext, useContext, useEffect, useState} from "react";
-import {MapPickUp} from "@/app/(protected)/devices/air/MapPickUp";
+import {MapPickUp} from "@/app/(protected)/devices/[device]/MapPickUp";
 import {addDevice} from "@/actions/device";
 
 // const CollectionCreateForm = ({initialValues, onFormInstanceReady}) => {

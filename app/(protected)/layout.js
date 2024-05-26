@@ -1,7 +1,9 @@
 import SideBar from "@/components/SideBar";
-export default function Layout({children}) {
+import {auth} from "@/auth";
+export default async function Layout({children}) {
+    const session= await auth()
     return (
-        <SideBar>
+        <SideBar session={session}>
             {children}
         </SideBar>
     )

@@ -21,6 +21,10 @@ export const {
             if (token.role && session.user) {
                 session.user.role = token.role
             }
+
+            if(token.name && session.user) {
+                session.user.username = token.name
+            }
             return session
         },
         async jwt({token}) {
@@ -31,6 +35,7 @@ export const {
             if (!existingUser) return token
 
             token.role = existingUser.role
+            token.name = existingUser.username
 
             return token
         }

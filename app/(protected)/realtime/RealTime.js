@@ -11,6 +11,7 @@ const {RangePicker} = DatePicker;
 Chart.register(StreamingPlugin, CategoryScale, LinearScale, PointElement, LineElement, Legend, Tooltip);
 
 export default function RealTime() {
+    const [type, setType] = useState(1)
     const [msg, setMsg] = useState({})
 
     useEffect(() => {
@@ -20,10 +21,18 @@ export default function RealTime() {
         }
     }, [])
 
+    const handleType = (value) => {
+        console.log(`Type: ${value}`);
+        setType(value)
+    };
+
+    const handleNumber = (value) => {
+        console.log(`Number: ${value}`)
+    }
     return (
         <>
-            <RealTimeForm/>
-            <CustomChart topic="sensor/001" msg={msg}/>
+            <RealTimeForm handleType={handleType} handleNumber={handleNumber}/>
+            <CustomChart topic={`sensor/00${type}`} msg={msg}/>
         </>
     )
 }
@@ -100,7 +109,7 @@ export function RealTimeChart({msg, topicStr}) {
                 type: 'realtime',
                 realtime: {
                     delay: 3000,
-                    duration: 10 * 6 * 10 * 1000,
+                    duration: 10 * 6 * 1000,
                 }
             },
             y: {

@@ -40,17 +40,23 @@ export const sidebarRoutes = [
             {
                 key: '5',
                 icon: <AreaChartOutlined />,
-                label: <Link href="/realtime">实时数据</Link>,
-            },
-            {
-                key: '6',
-                icon: <LineChartOutlined />,
-                label: <Link href="/history">历史数据</Link>,
+                label: <Link href="/realtime">数据</Link>,
+                children: [
+                    {
+                        key: '5-1',
+                        icon: <CompassOutlined />,
+                        label: <Link href="/realtime">实时数据</Link>,
+                    },{
+                        key: '5-2',
+                        icon: <CompassOutlined />,
+                        label: <Link href="/history">历史数据</Link>,
+                    }
+                ]
             },
             {
                 key: '7',
                 icon: <CompassOutlined />,
-                label: <Link href="/prediction">AI 算法预测</Link>,
+                label: <Link href="/prediction">生态环境评估</Link>,
             },
             {
                 key: '8',
