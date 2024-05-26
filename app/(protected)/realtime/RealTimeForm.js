@@ -41,10 +41,17 @@ export const RealTimeForm = ({handleType, handleNumber}) => {
                             {
                                 value: '1',
                                 label: '001',
+                            },
+                            {
+                                value: '2',
+                                label: '002'
+                            },
+                            {
+                                value: '3',
+                                label: '003'
                             }
                         ]}
                     />
-                    <Button>查询</Button>
                 </Space>
             </div>
         </>

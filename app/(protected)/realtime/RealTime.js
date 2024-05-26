@@ -4,10 +4,9 @@ import {CategoryScale, Chart, Legend, LinearScale, LineElement, PointElement, To
 import {Line} from 'react-chartjs-2';
 import 'chartjs-adapter-luxon';
 import StreamingPlugin from 'chartjs-plugin-streaming';
-import {Card, DatePicker} from "antd";
+import {Card} from "antd";
 import {RealTimeForm} from "@/app/(protected)/realtime/RealTimeForm";
 
-const {RangePicker} = DatePicker;
 Chart.register(StreamingPlugin, CategoryScale, LinearScale, PointElement, LineElement, Legend, Tooltip);
 
 export default function RealTime() {
@@ -17,6 +16,7 @@ export default function RealTime() {
     useEffect(() => {
         const client = new WebSocket(`wss://5g.mxzn.top/wss`);
         client.onmessage = (event) => {
+            console.log(JSON.parse(event.data))
             setMsg(JSON.parse(event.data))
         }
     }, [])
@@ -28,6 +28,7 @@ export default function RealTime() {
 
     const handleNumber = (value) => {
         console.log(`Number: ${value}`)
+
     }
     return (
         <>
