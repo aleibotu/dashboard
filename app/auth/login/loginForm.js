@@ -1,5 +1,5 @@
 'use client'
-import {Button, Card, Form, Input, Spin, Typography} from "antd";
+import {Button, Card, Form, Input, Typography} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
 import {login} from "@/actions/login";
 import {useState} from "react";

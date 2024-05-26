@@ -7,9 +7,11 @@ import {
     MenuUnfoldOutlined
 } from "@ant-design/icons";
 import {signOut} from "next-auth/react";
+import {usePathname} from "next/navigation";
 
 const {Header, Sider} = Layout;
 export default function SideBar({session, children}) {
+    const pathname = usePathname()
     const [pending, setPending] = useState(false);
     const [collapsed, setCollapsed] = useState(false);
 
@@ -37,7 +39,8 @@ export default function SideBar({session, children}) {
                 <Menu
                     theme="dark"
                     mode="inline"
-                    defaultSelectedKeys={['1']}
+                    defaultSelectedKeys={[pathname]}
+                    defaultOpenKeys={['/data']}
                     items={sidebarRoutes}
                     style={{
                         height: '100vh'

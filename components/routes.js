@@ -4,7 +4,6 @@ import {
     DesktopOutlined,
     ExperimentOutlined,
     HomeOutlined,
-    LineChartOutlined,
     UserOutlined
 } from "@ant-design/icons";
 
@@ -23,43 +22,43 @@ export const sidebarRoutes = [
         type: 'group',
         children: [
             {
-                key: '1',
+                key: '/home',
                 icon: <HomeOutlined />,
                 label: <Link href="/home">首页</Link>,
             },
             {
-                key: '2',
+                key: '/devices',
                 icon: <ExperimentOutlined />,
                 label: <Link href="/devices">设备</Link>,
             },
             {
-                key: '3',
+                key: '/users',
                 icon: <UserOutlined/>,
                 label: <Link href="/users">用户</Link>,
             },
             {
-                key: '5',
+                key: '/data',
                 icon: <AreaChartOutlined />,
                 label: <Link href="/realtime">数据</Link>,
                 children: [
                     {
-                        key: '5-1',
+                        key: '/realtime',
                         icon: <CompassOutlined />,
                         label: <Link href="/realtime">实时数据</Link>,
                     },{
-                        key: '5-2',
+                        key: '/history',
                         icon: <CompassOutlined />,
                         label: <Link href="/history">历史数据</Link>,
                     }
                 ]
             },
             {
-                key: '7',
+                key: '/prediction',
                 icon: <CompassOutlined />,
                 label: <Link href="/prediction">生态环境评估</Link>,
             },
             {
-                key: '8',
+                key: '/big',
                 icon: <DesktopOutlined />,
                 label: <Link href="/big">大屏</Link>,
             },
