@@ -25,7 +25,7 @@ export default function SideBar({session, children}) {
                     setPending(true)
                     signOut().then(() => setPending(false))
                 }}>
-                    log out
+                    退出登录
                 </a>
             ),
         },
@@ -69,9 +69,11 @@ export default function SideBar({session, children}) {
                             justifyContent: 'flex-end',
                             padding: '0 18px'
                         }}>
-                            <Spin spinning={pending}><h3>{session.user.name}</h3></Spin>
                             <Dropdown menu={{items}} placement="bottomRight" arrow>
-                                <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8"/>
+                                <div style={{display: 'flex', alignItems: 'center', cursor: 'pointer'}}>
+                                    <Spin spinning={pending}><h3>{session.user.name}</h3></Spin>
+                                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8"/>
+                                </div>
                             </Dropdown>
                         </div>
                     </div>
