@@ -23,6 +23,24 @@ export const MapPickUp = ({}) => {
     const handleClick = (e) => {
         setGps(() => [e.lngLat.lng, e.lngLat.lat])
     }
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+    };
+
+    function success(pos) {
+        const crd = pos.coords;
+        setGps(() => [crd.longitude, crd.latitude])
+    }
+
+    function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    const getLocation = () => {
+        navigator.geolocation.getCurrentPosition(success, error, options)
+    }
 
     return (
         <>
@@ -33,9 +51,12 @@ export const MapPickUp = ({}) => {
                 background: 'rgba(154, 153, 153, .7)',
                 color: 'black'
             }}>
-                <Paragraph copyable style={{margin: 0, padding: '0 2px'}}>
-                    {gps[0]}{gps[1]}
-                </Paragraph>
+                <div style={{display: 'flex'}}>
+                    {/*<div onClick={getLocation} style={{background: 'green', cursor: "pointer"}}>点击获取定位</div>*/}
+                    <Paragraph copyable style={{margin: 0, padding: '0 2px'}}>
+                        {gps[0]}{gps[1]}
+                    </Paragraph>
+                </div>
             </div>
             <StaticMap
                 onClick={handleClick}

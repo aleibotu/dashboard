@@ -1,5 +1,5 @@
 'use client'
-import {Button, Form, Input, Modal, Select, Space} from "antd";
+import {Button, Checkbox, Form, Input, Modal, Select, Space} from "antd";
 import {LockOutlined} from "@ant-design/icons";
 import {createContext, useContext, useEffect, useState} from "react";
 import {MapPickUp} from "@/app/(protected)/devices/[device]/MapPickUp";
@@ -8,9 +8,14 @@ import {addDevice} from "@/actions/device";
 // const CollectionCreateForm = ({initialValues, onFormInstanceReady}) => {
 const CollectionCreateForm = ({onFormInstanceReady, token}) => {
     const [form] = Form.useForm();
+
     useEffect(() => {
         onFormInstanceReady(form);
     }, []);
+
+    const handleChange = (e) => {
+        console.log(e)
+    }
     return (
         <>
             <Form
@@ -52,6 +57,11 @@ const CollectionCreateForm = ({onFormInstanceReady, token}) => {
                         placeholder="备注"
                     />
                 </Form.Item>
+                {/*<Form.Item*/}
+                {/*    name="sim-data"*/}
+                {/*>*/}
+                {/*    <Checkbox> 数据模拟器 </Checkbox>*/}
+                {/*</Form.Item>*/}
                 <Form.Item>
                     <div style={{width: '100%', height: 500, position: 'relative'}}>
                         <MapPickUp token={token}/>
@@ -101,7 +111,7 @@ const FilterForm = ({token}) => {
     // const [formValues, setFormValues] = useState();
     const [, setFormValues] = useState();
     const [open, setOpen] = useState(false);
-    const [, gps, ,userId] = useGps();
+    const [, gps, , userId] = useGps();
     const onCreate = (values) => {
         // 在这里拿到 经纬度.
         console.log('Received values of form: ', values, gps);
@@ -116,7 +126,7 @@ const FilterForm = ({token}) => {
             <Space>
                 <Select
                     showSearch
-                    placeholder="选择一个topic"
+                    placeholder="按topic搜索"
                     optionFilterProp="children"
                     style={{
                         width: 240,

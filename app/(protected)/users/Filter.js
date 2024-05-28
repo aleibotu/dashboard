@@ -70,9 +70,9 @@ const CollectionCreateFormModal = ({open, onCreate, onCancel, initialValues}) =>
     return (
         <Modal
             open={open}
-            title="Create a new collection"
-            okText="Create"
-            cancelText="Cancel"
+            title="添加新用户"
+            okText="添加"
+            cancelText="取消"
             okButtonProps={{
                 autoFocus: true,
             }}
@@ -114,7 +114,7 @@ export const Filter = () => {
             <Space>
                 <Select
                     showSearch
-                    placeholder="Select a person"
+                    placeholder="按用户名搜索"
                     optionFilterProp="children"
                     style={{
                         width: 240,
