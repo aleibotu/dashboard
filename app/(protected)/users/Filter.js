@@ -1,8 +1,10 @@
 'use client'
-import {Button, Form, Input, Modal, Select, Space} from "antd";
+import {Button, Form, Input, Modal, Select, Space, Spin} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
 import {register} from "@/actions/register";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useRef, useState} from "react";
+import {debounce} from "lodash";
+import {getUserMatch} from "@/actions/user";
 
 // const CollectionCreateForm = ({initialValues, onFormInstanceReady}) => {
 const CollectionCreateForm = ({onFormInstanceReady}) => {
@@ -98,7 +100,7 @@ const CollectionCreateFormModal = ({open, onCreate, onCancel, initialValues}) =>
     );
 };
 
-export const Filter = () => {
+export const Filter = ({users, text, handleChange, handleSearch}) => {
     // const [formValues, setFormValues] = useState();
     const [, setFormValues] = useState();
     const [open, setOpen] = useState(false);
@@ -109,31 +111,23 @@ export const Filter = () => {
             setOpen(false);
         })
     };
+
     return (
         <div style={{display: "flex", alignItems: 'center', justifyContent: "space-between", padding: '16px 8px'}}>
             <Space>
-                <Select
-                    showSearch
-                    placeholder="按用户名搜索"
-                    optionFilterProp="children"
-                    style={{
-                        width: 240,
-                    }}
-                    options={[
-                        {
-                            value: 'jack',
-                            label: 'Jack',
-                        },
-                        {
-                            value: 'lucy',
-                            label: 'Lucy',
-                        },
-                        {
-                            value: 'tom',
-                            label: 'Tom',
-                        },
-                    ]}
-                />
+                <Form>
+                    <Form.Item name="name">
+                        <Select
+                            style={{width: 200}}
+                            showSearch
+                            value={text}
+                            placeholder="按用户名搜索"
+                            onSearch={handleSearch}
+                            onChange={handleChange}
+                            options={(users || [])}
+                        />
+                    </Form.Item>
+                </Form>
             </Space>
 
             <Button type="primary" onClick={() => setOpen(true)}>增加</Button>

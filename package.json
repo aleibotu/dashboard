@@ -24,6 +24,7 @@
         "chartjs-plugin-streaming": "^2.0.0",
         "dayjs": "^1.11.11",
         "deck.gl": "^9.0.14",
+        "lodash": "^4.17.21",
         "luxon": "^1.27.0",
         "mapbox-gl": "^3.3.0",
         "next": "14.2.3",

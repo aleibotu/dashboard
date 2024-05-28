@@ -1,7 +1,7 @@
 'use server'
 import {signIn} from "@/auth";
 import {AuthError} from "next-auth";
-import {getUserByName} from "@/data/user";
+import {getUserByName} from "@/actions/user";
 import {DEFAULT_LOGIN_REDIRECT} from "@/routes";
 
 export const login = async (formData) => {

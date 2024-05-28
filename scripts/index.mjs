@@ -3,12 +3,14 @@ import {PrismaClient} from '@prisma/client'
 const prisma = new PrismaClient({log: ['query', 'info']})
 
 async function main() {
-    const devices = await prisma.device.findMany({
+    const users = await prisma.user.findMany({
         where: {
-            topic: 'sensor/002',
+            username: {
+                startsWith: 'a'
+            },
         }
     })
-    console.log(devices);
+    console.log(users);
 }
 
 main()

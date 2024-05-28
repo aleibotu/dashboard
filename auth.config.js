@@ -1,6 +1,6 @@
 import Credentials from 'next-auth/providers/credentials'
 import {LoginSchema} from "@/schemas";
-import {getUserByName} from "@/data/user";
+import {getUserByName} from "@/actions/user";
 import bcrypt from "bcryptjs";
 
 export default {

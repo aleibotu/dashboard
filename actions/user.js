@@ -18,6 +18,20 @@ export const getUserById = async (id) => {
     }
 }
 
+export const getUserMatch = async (str) => {
+    try {
+        return await db.user.findMany({
+            where: {
+                username: {
+                    startsWith: str
+                }
+            }
+        });
+    } catch (e) {
+        return null
+    }
+}
+
 export const getUsers = async () => {
     try {
         return await db.user.findMany();

@@ -2,7 +2,7 @@
 import bcrypt from 'bcryptjs'
 import {LoginSchema} from "@/schemas";
 import {db} from "@/lib/db";
-import {getUserByName} from "@/data/user";
+import {getUserByName} from "@/actions/user";
 import {revalidatePath} from "next/cache";
 
 export const register = async (formData) => {
