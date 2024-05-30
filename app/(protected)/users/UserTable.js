@@ -3,6 +3,7 @@ import {Space, Table, Tag} from "antd";
 import {delUser} from "@/actions/user";
 
 export const UserTable = function ({users}) {
+    console.log(users)
     const data = users.map(u => ({key: u.id, name: u.username, age: 32, address: u.description, tags: ['admin']}))
 
     const columns = [

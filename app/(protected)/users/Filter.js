@@ -3,8 +3,8 @@ import {Button, Form, Input, Modal, Select, Space, Spin} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
 import {register} from "@/actions/register";
 import {useEffect, useMemo, useRef, useState} from "react";
-import {debounce} from "lodash";
 import {getUserMatch} from "@/actions/user";
+import {debounce} from "lodash";
 
 // const CollectionCreateForm = ({initialValues, onFormInstanceReady}) => {
 const CollectionCreateForm = ({onFormInstanceReady}) => {
@@ -100,7 +100,7 @@ const CollectionCreateFormModal = ({open, onCreate, onCancel, initialValues}) =>
     );
 };
 
-export const Filter = ({users, text, handleChange, handleSearch}) => {
+export const Filter = ({value, onChange}) => {
     // const [formValues, setFormValues] = useState();
     const [, setFormValues] = useState();
     const [open, setOpen] = useState(false);
@@ -115,19 +115,15 @@ export const Filter = ({users, text, handleChange, handleSearch}) => {
     return (
         <div style={{display: "flex", alignItems: 'center', justifyContent: "space-between", padding: '16px 8px'}}>
             <Space>
-                <Form>
-                    <Form.Item name="name">
-                        <Select
-                            style={{width: 200}}
-                            showSearch
-                            value={text}
-                            placeholder="按用户名搜索"
-                            onSearch={handleSearch}
-                            onChange={handleChange}
-                            options={(users || [])}
-                        />
-                    </Form.Item>
-                </Form>
+                <DebounceSelect
+                    mode="multiple"
+                    value={value}
+                    placeholder="Select users"
+                    onChange={onChange}
+                    style={{
+                        width: 200
+                    }}
+                />
             </Space>
 
             <Button type="primary" onClick={() => setOpen(true)}>增加</Button>
@@ -141,4 +137,38 @@ export const Filter = ({users, text, handleChange, handleSearch}) => {
             />
         </div>
     )
+}
+
+function DebounceSelect({...props}) {
+    const [fetching, setFetching] = useState(false);
+    const [options, setOptions] = useState([]);
+    const fetchRef = useRef(0);
+    const debounceFetcher = useMemo(() => {
+        const loadOptions = (value) => {
+            fetchRef.current += 1;
+            const fetchId = fetchRef.current;
+            setOptions([]);
+            setFetching(true);
+            getUserMatch(value).then((newOptions) => {
+                if (fetchId !== fetchRef.current) {
+                    // for fetch callback order
+                    return;
+                }
+                setOptions(newOptions.map(u => ({label: u.username, value: u.id})));
+                setFetching(false);
+            });
+        };
+        return debounce(loadOptions, 800);
+    }, []);
+    return (
+        <Select
+            labelInValue
+            maxCount={1}
+            filterOption={false}
+            onSearch={debounceFetcher}
+            notFoundContent={fetching ? <Spin size="small" /> : null}
+            options={options}
+            {...props}
+        />
+    );
 }
